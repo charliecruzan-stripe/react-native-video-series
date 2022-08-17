@@ -10,3 +10,7 @@ The steps to run the app are:
 4. Set your [Stripe API keys](https://stripe.com/docs/development/quickstart#api-keys) in the `.env` file (this is your publishable key and your secret key)
 5. In one terminal window, start the server by running `yarn server`.
 6. In another terminal window, build the app by running either `yarn ios` or `yarn android`.
+
+<img src="example.png"
+     alt="Screenshot of the example app"
+/>
