@@ -9,7 +9,7 @@
     "server": "nodemon server/index.js --exec babel-node --presets @babel/preset-env"
   },
   "dependencies": {
-    "@stripe/stripe-react-native": "^0.18.0",
+    "@stripe/stripe-react-native": "^0.22.0",
     "dotenv": "^16.0.1",
     "react": "18.0.0",
     "react-native": "0.69.4"

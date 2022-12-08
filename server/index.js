@@ -102,20 +102,7 @@ app.post('/payment-sheet', async (req, res) => {
   const paymentIntent = await stripe.paymentIntents.create({
     amount: 5099,
     currency: 'usd',
-    customer: customer.id,
-    shipping: {
-      name: 'Jane Doe',
-      address: {
-        state: 'Texas',
-        city: 'Houston',
-        line1: '1459  Circle Drive',
-        postal_code: '77063',
-        country: 'US',
-      },
-    },
-    // Edit the following to support different payment methods in your PaymentSheet
-    // Note: some payment methods have different requirements: https://stripe.com/docs/payments/payment-methods/integration-options
-    payment_method_types: ['card'],
+    payment_method_types: ['card', 'link'],
   });
   return res.json({
     paymentIntent: paymentIntent.client_secret,

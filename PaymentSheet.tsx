@@ -11,7 +11,12 @@ const PaymentSheet = ({
   publishableKey: string;
 }) => {
   const [ready, setReady] = useState(false);
-  const {initPaymentSheet, presentPaymentSheet, loading} = usePaymentSheet();
+  const {
+    initPaymentSheet,
+    presentPaymentSheet,
+    loading,
+    resetPaymentSheetCustomer,
+  } = usePaymentSheet();
 
   useEffect(() => {
     initialisePaymentSheet();
@@ -19,8 +24,7 @@ const PaymentSheet = ({
   }, []);
 
   const initialisePaymentSheet = async () => {
-    const {paymentIntent, ephemeralKey, customer} =
-      await fetchPaymentSheetParams();
+    const {paymentIntent} = await fetchPaymentSheetParams();
 
     const {error} = await initPaymentSheet({
       appearance: {
@@ -39,8 +43,6 @@ const PaymentSheet = ({
           borderRadius: 25,
         },
       },
-      customerId: customer,
-      customerEphemeralKeySecret: ephemeralKey,
       paymentIntentClientSecret: paymentIntent,
       merchantDisplayName: 'Example Inc.',
       applePay: {
@@ -100,6 +102,12 @@ const PaymentSheet = ({
           <Button title={'Go back'} onPress={goBack} />
           <Button title={'Buy'} onPress={buy} disabled={loading || !ready} />
         </View>
+        <Button
+          title={'Logout'}
+          onPress={async () => {
+            await resetPaymentSheetCustomer();
+          }}
+        />
       </StripeProvider>
     </View>
   );
